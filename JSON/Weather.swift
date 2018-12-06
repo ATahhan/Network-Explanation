@@ -44,17 +44,17 @@ struct WeatherJSON {
         //TODO: recive daily data from JSON
         
         
-            
-        }
         
-        //task.resume()
-        
-}
-        
-        
-        
-        
-        
-        
+    }
     
+    //task.resume()
+    
+}
+
+
+
+
+
+
+
 
