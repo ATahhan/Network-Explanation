@@ -34,15 +34,32 @@ struct WeatherJSON {
     
     static func forecast (withLocation location:String, completion: @escaping ([WeatherJSON]) -> Void) {
         
-        //TODO: pass URL to URLRequest function
-        //TODO: implement URLSession
-        //TODO: Create Array of WeatherJSON , this array neme:forecastArray
-        //TODO: recive daily data from JSON
         
+        let url = basePath + location
+        let request = URLRequest(url: URL(string: url)!)
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, err) in
+            
+            var forecasts: [WeatherJSON] = []
+            if let data = data {
+                if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    if let dailyJsonObject = jsonObject!["daily"] as? [String: Any] {
+                        if let dataArray = dailyJsonObject["data"] as? [[String:Any]] {
+                            for data in dataArray {
+                                forecasts.append(try! WeatherJSON(json: data))
+                            }
+                        }
+                    }
+                }
+            }
+            
+            completion(forecasts)
+        }
+        task.resume()
         
     }
     
-    //task.resume()
+    
     
 }
 
