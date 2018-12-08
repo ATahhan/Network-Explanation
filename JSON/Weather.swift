@@ -21,9 +21,7 @@ struct WeatherJSON {
     
     init(json:[String:Any]) throws {
         guard let summary = json["summary"] as? String else {throw SerializationError.missing("summary is missing")}
-        
         guard let icon = json["icon"] as? String else {throw SerializationError.missing("icon is missing")}
-        
         guard let temperature = json["temperatureMax"] as? Double else {throw SerializationError.missing("temp is missing")}
         
         self.summary = summary
@@ -31,18 +29,15 @@ struct WeatherJSON {
         self.temperature = temperature
     }
     
-    // Note: https://api.darksky.net/forecast/[key]/[latitude],[longitude]
-    
-    
-    static let basePath = "https://api.darksky.net/forecast/a8249d85e521fc873308cb1bdedd1155/"
+    // Note: https:// api.darksky.net/forecast/[key]/[latitude],[longitude]
+    static let basePath = "https://api.darksky.net/forecast/26f37331057da0a36e0b0915c340214b/"
     
     static func forecast (withLocation location:String, completion: @escaping ([WeatherJSON]) -> Void) {
         
         //TODO: pass URL to URLRequest function
-        // TODO: implement URLSession
-        // TODO: Create Array of WeatherJSON , this array neme:forecastArray
+        //TODO: implement URLSession
+        //TODO: Create Array of WeatherJSON , this array neme:forecastArray
         //TODO: recive daily data from JSON
-        
         
         
     }
